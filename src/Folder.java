@@ -1,5 +1,8 @@
+import com.sun.source.tree.WhileLoopTree;
+
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Folder extends StorageItem {
     ArrayList<StorageItem> items;
@@ -59,12 +62,44 @@ public class Folder extends StorageItem {
                     }
                 }
 
-            }
-            else if(item instanceof Folder && i==0){
+            } else if (item instanceof Folder && i == 0) {
                 File temp = ((Folder) item).findFile2(parts, i);
-                if (temp != null) { return temp;}
+                if (temp != null) {
+                    return temp;
+                }
             }
         }
         return null;
+    }
+
+
+    @Override
+    void printTreeAux(SortingField field, int dipth) {
+        switch (field) {
+            case NAME:
+                Collections.sort(this.items, new sortByName());
+                break;
+            case SIZE:
+                Collections.sort(this.items, new sortBySize());
+                break;
+            case DATE:
+                Collections.sort(this.items, new sortByDate());
+                break;
+        }
+
+        int temp_dipth = dipth;
+
+        StringBuilder printing_structure = new StringBuilder();
+        while(temp_dipth>0){
+            printing_structure.append("|    ");
+            temp_dipth--;
+        }
+        printing_structure.append(this.getName());
+        System.out.println(printing_structure);
+
+        for (StorageItem item : this.items){
+
+            item.printTreeAux(field, dipth+1);
+        }
     }
 }

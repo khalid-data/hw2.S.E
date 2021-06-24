@@ -25,7 +25,8 @@ A
 |    |    |    code.java
 |    |    bye.log
 |    Aa.txt
-|    aa.p
+|    aa.py
+
 
 File has been found: aa.py
 aa.py Size: 20MB Created: 2021-11-14 10:03:13.182

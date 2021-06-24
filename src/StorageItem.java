@@ -21,12 +21,13 @@ public abstract class StorageItem {
     public abstract int getSize();
 
     void printTree(SortingField field){
-        // sends it to an aux function with new variable as dipth strting from 0
-        // sort it by given field
-        //string append  |    x dipth times + name
-        //for strage ithem in this items call the same func again with dipth +1
-        //same func for file without the forloop
+        printTreeAux(field, 0);
     }
+
+    void printTreeAux(SortingField field, int dipth){
+
+    }
+
 
     public Timestamp getDate(){
         long starting_range = Timestamp.valueOf("2017-01-01 00:00:00").getTime();
@@ -49,6 +50,7 @@ class sortByName implements Comparator<StorageItem>{
         return o1.name.compareTo(o2.name);
     }
 }
+
 
 class sortBySize implements Comparator<StorageItem>{
     @Override

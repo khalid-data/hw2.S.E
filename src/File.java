@@ -16,7 +16,7 @@ public class File extends StorageItem {
 
     @Override
     public String getName() {
-        return this.name + this.ext;
+        return this.name + '.' + this.ext;
     }
 
     void addContent(String contentToAdd){
@@ -24,8 +24,19 @@ public class File extends StorageItem {
     }
 
     void printContent(){
-        System.out.println(this.name + "Size: " + getSize() + "MB" + "Created" + this.date);
+        System.out.println(this.getName() + " Size: " + getSize() + "MB" + " Created: " + this.date);
         System.out.println(this.content);
     }
 
+    @Override
+    void printTreeAux(SortingField field, int depth) {
+        int temp_depth = depth;
+        StringBuilder printing_structure = new StringBuilder();
+        while(temp_depth>0){
+            printing_structure.append("|    ");
+            temp_depth--;
+        }
+        printing_structure.append(this.getName());
+        System.out.println(printing_structure);
+    }
 }
